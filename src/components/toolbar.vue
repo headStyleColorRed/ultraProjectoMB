@@ -1,7 +1,7 @@
 <template>
 <div>
   
-  <v-toolbar dark color="orange darken-1">
+  <v-toolbar fixed dark color="orange darken-1">
     <v-btn icon>
       <v-icon>search</v-icon>
     </v-btn>
@@ -32,7 +32,7 @@
       temporary
     >
       <v-list class="pa-1">
-        <v-list-tile v-if="mini" @click.stop="mini = !mini">
+        <v-list-tile  v-if="mini" @click.stop="mini = !mini">
           <v-list-tile-action>
             <v-icon>chevron_right</v-icon>
           </v-list-tile-action>
@@ -54,6 +54,7 @@
         <v-divider light></v-divider>
 
         <v-list-tile
+         class=" mt-3"
           v-for="item in items"
           :key="item.title"
         >

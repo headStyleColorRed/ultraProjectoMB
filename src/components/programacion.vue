@@ -17,40 +17,45 @@
         <v-btn v-on:click="editar" color="orange darken-1">
           <v-icon>lock</v-icon>
         </v-btn>
-        <v-btn  color="orange darken-1">
+        <v-btn color="orange darken-1">
           <v-icon>check</v-icon>
         </v-btn>
       </div>
     </div>
 
-    <div v-for="(item, index) in rutas" :key="index" class="DiaThumbnail">
+    <div v-for="(ruta, index) in rutas" :key="index" class="DiaThumbnail">
       <h2>Day {{index + 1}}</h2>
       <v-layout row>
         <v-flex xs12 sm6 offset-sm3>
           <v-card flat>
             <v-list class="card">
-              <v-list-tile v-for="item in rutas[index]" :key="item.title">
+              <v-list-tile v-for="(item, n) in rutas[index]" :key="n">
                 <v-list-tile-action>
-                  <v-icon v-if="edicion" color="orange darken-1">menu</v-icon>
+                  <v-icon
+                    v-on:click="siguienteDia(item, index,ruta, n)"
+                    v-if="edicion"
+                    color="orange darken-1"
+                  >add</v-icon>
                   <v-icon v-else>lock</v-icon>
                 </v-list-tile-action>
 
                 <v-list-tile-content>
-                  <v-list-tile-title v-text="item.title"></v-list-tile-title>
+                  <v-list-tile-title>{{item.title}}-{{item.kilometer}}</v-list-tile-title>
                 </v-list-tile-content>
 
-                <v-list-tile-content>
-                  <v-list-tile-title>-</v-list-tile-title>
-                </v-list-tile-content>
-
-                <v-list-tile-content>
-                  <v-list-tile-title v-text="item.kilometer"></v-list-tile-title>
-                </v-list-tile-content>
+                <v-list-tile-action>
+                  <v-icon v-on:click="anteriorDia()" v-if="edicion" color="orange darken-1">remove</v-icon>
+                  <v-icon v-else>lock</v-icon>
+                </v-list-tile-action>
               </v-list-tile>
             </v-list>
           </v-card>
         </v-flex>
       </v-layout>
+    </div>
+    <div v-if="loaderShow" class="lds-ripple">
+      <div></div>
+      <div></div>
     </div>
   </div>
 </template>
@@ -62,86 +67,61 @@ import listaRutas from "../assets/programacionRutas.json";
 export default {
   data() {
     return {
-      rutaEscogida: "",
-      rutas: "",
-      dragarDisabled: true,
+      loaderShow: true,
       edicion: false,
-      numeroDeDias: { 0: "diaUno", 1: "diaDos", 2: "diaTres", 3: "diaCuatro" },
       dialog: false,
-      whichday: true
+      whichday: true,
+      rutaEscogida: "",
+      rutas: ""
     };
   },
+
+  mounted() {
+    this.fetchRutasData();
+  },
+
   methods: {
     editar() {
       this.edicion = !this.edicion;
     },
-  },
+    siguienteDia(item, index, ruta, n) {
+      console.log(`Cambiar ruta ${item.title} to day ${index + 2}`);
+    },
+    fetchRutasData() {
+      this.$http
+        .get("https://montblanc-8eb85.firebaseio.com/rutas.json")
+        .then(data => {
+          const resultArray = [];
+          for (let key in data) {
+            resultArray.push(data[key]);
+          }
+          this.Cuaderno = resultArray[0];
+          this.loaderShow = false;
 
-  mounted() {
-    let listaDeCuatroDias = [];
-    let listaDeCincoDias = [];
-    let listaDeSeisDias = [];
-    let listaDeSieteDias = [];
-    let listaDeOchoDias = [];
-    let listaDeNueveDias = [];
-    let listaDeDiezDias = [];
-    let listaDeOnceDias = [];
-
-    /////////  CUATRO DIAS  ////////
-    for (let i = 1; i <= 4; i++) {
-      listaDeCuatroDias.push(listaRutas.rutas.cuatroDias[i]);
-    }
-    /////////  CINCO DIAS  ////////
-    for (let i = 1; i <= 5; i++) {
-      listaDeCincoDias.push(listaRutas.rutas.cincoDias[i]);
-    }
-    /////////  SEIS DIAS  ////////
-    for (let i = 1; i <= 6; i++) {
-      listaDeSeisDias.push(listaRutas.rutas.seisDias[i]);
-    }
-    /////////  SIETE DIAS  ////////
-    for (let i = 1; i <= 7; i++) {
-      listaDeSieteDias.push(listaRutas.rutas.sieteDias[i]);
-    }
-    /////////  OCHO DIAS  ////////
-    for (let i = 1; i <= 8; i++) {
-      listaDeOchoDias.push(listaRutas.rutas.ochoDias[i]);
-    }
-    /////////  NUEVE DIAS  ////////
-    for (let i = 1; i <= 9; i++) {
-      listaDeNueveDias.push(listaRutas.rutas.nueveDias[i]);
-    }
-    /////////  DIEZ DIAS  ////////
-    for (let i = 1; i <= 10; i++) {
-      listaDeDiezDias.push(listaRutas.rutas.diezDias[i]);
-    }
-    /////////  ONCE DIAS  ////////
-    for (let i = 1; i <= 11; i++) {
-      listaDeOnceDias.push(listaRutas.rutas.onceDias[i]);
-    }
-
-    this.numeroDeDias = this.$store.state.numeroDeDias;
-    if (this.$store.state.numeroDeDias == 4) {
-      this.rutas = listaDeCuatroDias;
-    } else if (this.$store.state.numeroDeDias == 5) {
-      this.rutas = listaDeCincoDias;
-    } else if (this.$store.state.numeroDeDias == 6) {
-      this.rutas = listaDeSeisDias;
-    } else if (this.$store.state.numeroDeDias == 7) {
-      this.rutas = listaDeSieteDias;
-    } else if (this.$store.state.numeroDeDias == 8) {
-      this.rutas = listaDeOchoDias;
-    } else if (this.$store.state.numeroDeDias == 9) {
-      this.rutas = listaDeNueveDias;
-    } else if (this.$store.state.numeroDeDias == 10) {
-      this.rutas = listaDeDiezDias;
-    } else if (this.$store.state.numeroDeDias == 11) {
-      this.rutas = listaDeOnceDias;
+          this.numeroDeDias = this.$store.state.numeroDeDias;
+          if (this.$store.state.numeroDeDias == 4) {
+            this.rutas = resultArray[0].cuatroDias;
+          } else if (this.$store.state.numeroDeDias == 5) {
+            this.rutas = resultArray[0].cincoDias;
+          } else if (this.$store.state.numeroDeDias == 6) {
+            this.rutas = resultArray[0].seisDias;
+          } else if (this.$store.state.numeroDeDias == 7) {
+            this.rutas = resultArray[0].sieteDias;
+          } else if (this.$store.state.numeroDeDias == 8) {
+            this.rutas = resultArray[0].ochoDias;
+          } else if (this.$store.state.numeroDeDias == 9) {
+            this.rutas = resultArray[0].nueveDias;
+          } else if (this.$store.state.numeroDeDias == 10) {
+            this.rutas = resultArray[0].diezDias;
+          } else if (this.$store.state.numeroDeDias == 11) {
+            this.rutas = resultArray[0].onceDias;
+          }
+        });
     }
   },
 
   components: {
-    toolbar,
+    toolbar
   }
 };
 </script>
@@ -169,7 +149,7 @@ export default {
 }
 
 .explicacion {
-  margin-top: 1rem;
+  margin-top: 5rem;
   color: whitesmoke;
   font-family: sans-serif;
   border-bottom: 1px solid whitesmoke;
@@ -178,18 +158,52 @@ export default {
 .explicacion h3 {
   text-align: center;
 }
+
+.explicacion li{
+  padding-right: 1rem;
+  margin-bottom: 5px;
+}
 .botones {
   display: grid;
   grid-template-columns: 1fr 1fr;
   padding: 0.5rem 0;
 }
 
-.dialoga {
-  position: fixed;
+
+.lds-ripple {
+  display: inline-block;
+  position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 90vw;
+  width: 64px;
+  height: 64px;
+}
+.lds-ripple div {
+  position: absolute;
+  border: 4px solid #ed7d3a;
+  opacity: 1;
+  border-radius: 50%;
+  animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+.lds-ripple div:nth-child(2) {
+  animation-delay: -0.5s;
+}
+@keyframes lds-ripple {
+  0% {
+    top: 28px;
+    left: 28px;
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+  100% {
+    top: -1px;
+    left: -1px;
+    width: 58px;
+    height: 58px;
+    opacity: 0;
+  }
 }
 </style>
 

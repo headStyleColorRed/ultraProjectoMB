@@ -3,7 +3,6 @@
     <toolbar/>
     <div class="wrapper">
       <div class="wholeMap">
-        <img src="@/assets/fotos/wholeMapTmb.png" alt>
       </div>
       <div class="inicioAventura">
         <!--/////////Preguntas de Rigor////////-->
@@ -64,19 +63,6 @@
         </v-layout>
       </div>
 
-      <!--////////// E L   T I E M P O ////////-->
-      <div class="forecast">
-        <div class="diaActual" v-for="(item, index) in forecast" :key="index">
-          <div class="nombreDia">
-            <h3>{{item.nombreDia}}</h3>
-          </div>
-          <div class="iconoTiempo">
-            <v-icon style="color:#fb8c00">{{item.iconoTiempo}}</v-icon>
-          </div>
-          <div class="temperatura">{{item.temperatura}}</div>
-          <div class="porcentajeLluvia">{{item.porcentajeLluvia}}</div>
-        </div>
-      </div>
     </div>
   </div>
 </template>
@@ -175,13 +161,13 @@ export default {
 
 <style>
 .wrapper {
-  max-height: 90vh;
+  height: 100vh;
   display: grid;
   grid-template-rows: 2fr 0.7fr 1.5fr;
-}
-
-.wholeMap img {
-  width: 100vw;
+  background-image: url("../assets/fotos/landingBackground.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 80% 50%;
 }
 
 .inicioAventura {
@@ -236,35 +222,19 @@ export default {
 
 .restar {
   position: absolute;
-  top: 42%;
-  left: 18%;
+  top: 38%;
+  left: 10%;
   font-size: 2rem;
+  padding: 1rem;
 }
 
 .añadir {
   position: absolute;
-  top: 43%;
-  left: 79%;
+  top: 39%;
+  left: 76%;
   font-size: 2rem;
+  padding: 1rem;
 }
 
-.forecast {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-}
-
-.diaActual {
-  display: grid;
-  grid-template-rows: 1fr 1fr 1fr 1fr;
-  text-align: center;
-  font-family: sans-serif;
-  color: whitesmoke;
-}
-
-.nombreDia {
-  border-bottom: #fb8c00 solid 1px;
-  margin: 0 1rem;
-  margin-bottom: 10px;
-}
 </style>
 

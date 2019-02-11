@@ -25,10 +25,5 @@ export default new Router({
       name: 'programacion',
       component: programacion
     },
-    {
-      path: '*',
-      name: 'firstLanding',
-      component: firstLanding
-    },
   ]
 })
