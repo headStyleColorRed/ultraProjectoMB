@@ -1,0 +1,492 @@
+{
+    "rutas": {
+        "cuatroDias": {
+            "1": {
+                "0": {
+                    "title": "Chamonix - Les Houches",
+                    "kilometer": "43km"
+                },
+                "1": {
+                    "title": "Les Houches - Les Contamines",
+                    "kilometer": "32km"
+                }
+            },
+            "2": {
+                "0": {
+                    "title": "Les Contamines - Les Chapieux",
+                    "kilometer": "65km"
+                },
+                "1": {
+                    "title": " Les Chapieux - Refuge Elisabetta",
+                    "kilometer": "21km"
+                },
+                "2": {
+                    "title": " Refuge Elisabetta - Courmayeur",
+                    "kilometer": "22km"
+                }
+            },
+            "3": {
+                "0": {
+                    "title": " Courmayeur - La Vachey",
+                    "kilometer": "26km"
+                },
+                "1": {
+                    "title": " La Vachey - La Fouly ",
+                    "kilometer": "32km"
+                },
+                "2": {
+                    "title": " La Fouly - Champex",
+                    "kilometer": "42km"
+                }
+            },
+            "4": {
+                "0": {
+                    "title": " Champex - Trient",
+                    "kilometer": "28km"
+                },
+                "1": {
+                    "title": " Trient - Tre Le Champ",
+                    "kilometer": "19km"
+                },
+                "2": {
+                    "title": " Tre Le Champ - Chamonix",
+                    "kilometer": "40km"
+                }
+            }
+        },
+        "cincoDias": {
+            "1": {
+                "0": {
+                    "title": "Chamonix - Les Houches",
+                    "kilometer": "43km"
+                },
+                "1": {
+                    "title": "Les Houches - Les Contamines",
+                    "kilometer": "32km"
+                }
+            },
+            "2": {
+                "0": {
+                    "title": "Les Contamines - Les Chapieux",
+                    "kilometer": "65km"
+                },
+                "1": {
+                    "title": " Les Chapieux - Refuge Elisabetta",
+                    "kilometer": "21km"
+                }
+            },
+            "3": {
+                "0": {
+                    "title": " Refuge Elisabetta - Courmayeur",
+                    "kilometer": "22km"
+                },
+                "1": {
+                    "title": " Courmayeur - La Vachey",
+                    "kilometer": "26km"
+                },
+                "2": {
+                    "title": " La Vachey - La Fouly ",
+                    "kilometer": "32km"
+                }
+            },
+            "4": {
+                "0": {
+                    "title": " La Fouly - Champex",
+                    "kilometer": "42km"
+                },
+                "1": {
+                    "title": " Champex - Trient",
+                    "kilometer": "28km"
+                }
+            },
+            "5": {
+                "0": {
+                    "title": " Trient - Tre Le Champ",
+                    "kilometer": "19km"
+                },
+                "1": {
+                    "title": " Tre Le Champ - Chamonix",
+                    "kilometer": "40km"
+                }
+            }
+        },
+        "seisDias": {
+            "1": {
+                "0": {
+                    "title": "Chamonix - Les Houches",
+                    "kilometer": "43km"
+                },
+                "1": {
+                    "title": "Les Houches - Les Contamines",
+                    "kilometer": "32km"
+                }
+            },
+            "2": {
+                "0": {
+                    "title": "Les Contamines - Les Chapieux",
+                    "kilometer": "65km"
+                },
+                "1": {
+                    "title": " Les Chapieux - Refuge Elisabetta",
+                    "kilometer": "21km"
+                }
+            },
+            "3": {
+                "0": {
+                    "title": " Refuge Elisabetta - Courmayeur",
+                    "kilometer": "22km"
+                },
+                "1": {
+                    "title": " Courmayeur - La Vachey",
+                    "kilometer": "26km"
+                }
+            },
+            "4": {
+                "0": {
+                    "title": " La Vachey - La Fouly ",
+                    "kilometer": "32km"
+                },
+                "1": {
+                    "title": " La Fouly - Champex",
+                    "kilometer": "42km"
+                }
+            },
+            "5": {
+                "0": {
+                    "title": " Champex - Trient",
+                    "kilometer": "28km"
+                }
+            },
+            "6": {
+                "0": {
+                    "title": " Trient - Tre Le Champ",
+                    "kilometer": "19km"
+                },
+                "1": {
+                    "title": " Tre Le Champ - Chamonix",
+                    "kilometer": "40km"
+                }
+            }
+        },
+        "sieteDias": {
+            "1": {
+                "0": {
+                    "title": "Chamonix - Les Houches",
+                    "kilometer": "43km"
+                }
+            },
+            "2": {
+                "0": {
+                    "title": "Les Houches - Les Contamines",
+                    "kilometer": "32km"
+                },
+                "1": {
+                    "title": "Les Contamines - Les Chapieux",
+                    "kilometer": "65km"
+                }
+            },
+            "3": {
+                "0": {
+                    "title": " Les Chapieux - Refuge Elisabetta",
+                    "kilometer": "21km"
+                },
+                "1": {
+                    "title": " Refuge Elisabetta - Courmayeur",
+                    "kilometer": "22km"
+                }
+            },
+            "4": {
+                "0": {
+                    "title": " Courmayeur - La Vachey",
+                    "kilometer": "26km"
+                },
+                "1": {
+                    "title": " La Vachey - La Fouly ",
+                    "kilometer": "32km"
+                }
+            },
+            "5": {
+                "1": {
+                    "title": " La Fouly - Champex",
+                    "kilometer": "42km"
+                },
+                "2": {
+                    "title": " Champex - Trient",
+                    "kilometer": "28km"
+                }
+            },
+            "6": {
+                "1": {
+                    "title": " Trient - Tre Le Champ",
+                    "kilometer": "19km"
+                }
+            },
+            "7": {
+                "0": {
+                    "title": " Tre Le Champ - Chamonix",
+                    "kilometer": "40km"
+                }
+            }
+        },
+        "ochoDias": {
+            "1": {
+                "0": {
+                    "title": "Chamonix - Les Houches",
+                    "kilometer": "43km"
+                }
+            },
+            "2": {
+                "0": {
+                    "title": "Les Houches - Les Contamines",
+                    "kilometer": "32km"
+                }
+            },
+            "3": {
+                "0": {
+                    "title": "Les Contamines - Les Chapieux",
+                    "kilometer": "65km"
+                },
+                "1": {
+                    "title": " Les Chapieux - Refuge Elisabetta",
+                    "kilometer": "21km"
+                }
+            },
+            "4": {
+                "0": {
+                    "title": " Refuge Elisabetta - Courmayeur",
+                    "kilometer": "22km"
+                },
+                "1": {
+                    "title": " Courmayeur - La Vachey",
+                    "kilometer": "26km"
+                }
+            },
+            "5": {
+                "0": {
+                    "title": " La Vachey - La Fouly ",
+                    "kilometer": "32km"
+                },
+                "1": {
+                    "title": " La Fouly - Champex",
+                    "kilometer": "42km"
+                }
+            },
+            "6": {
+                "2": {
+                    "title": " Champex - Trient",
+                    "kilometer": "28km"
+                }
+            },
+            "7": {
+                "1": {
+                    "title": " Trient - Tre Le Champ",
+                    "kilometer": "19km"
+                }
+            },
+            "8": {
+                "0": {
+                    "title": " Tre Le Champ - Chamonix",
+                    "kilometer": "40km"
+                }
+            }
+        },
+        "nueveDias": {
+            "1": {
+                "0": {
+                    "title": "Chamonix - Les Houches",
+                    "kilometer": "43km"
+                }
+            },
+            "2": {
+                "0": {
+                    "title": "Les Houches - Les Contamines",
+                    "kilometer": "32km"
+                }
+            },
+            "3": {
+                "0": {
+                    "title": "Les Contamines - Les Chapieux",
+                    "kilometer": "65km"
+                },
+                "1": {
+                    "title": " Les Chapieux - Refuge Elisabetta",
+                    "kilometer": "21km"
+                }
+            },
+            "4": {
+                "0": {
+                    "title": " Refuge Elisabetta - Courmayeur",
+                    "kilometer": "22km"
+                }
+            },
+            "5": {
+                "0": {
+                    "title": " Courmayeur - La Vachey",
+                    "kilometer": "26km"
+                },
+                "1": {
+                    "title": " La Vachey - La Fouly ",
+                    "kilometer": "32km"
+                }
+            },
+            "6": {
+                "0": {
+                    "title": " La Fouly - Champex",
+                    "kilometer": "42km"
+                }
+            },
+            "7": {
+                "0": {
+                    "title": " Champex - Trient",
+                    "kilometer": "28km"
+                }
+            },
+            "8": {
+                "0": {
+                    "title": " Trient - Tre Le Champ",
+                    "kilometer": "19km"
+                }
+            },
+            "9": {
+                "0": {
+                    "title": " Tre Le Champ - Chamonix",
+                    "kilometer": "40km"
+                }
+            }
+        },
+        "diezDias": {
+            "1": {
+                "0": {
+                    "title": "Chamonix - Les Houches",
+                    "kilometer": "43km"
+                }
+            },
+            "2": {
+                "0": {
+                    "title": "Les Houches - Les Contamines",
+                    "kilometer": "32km"
+                }
+            },
+            "3": {
+                "0": {
+                    "title": "Les Contamines - Les Chapieux",
+                    "kilometer": "65km"
+                }
+            },
+            "4": {
+                "0": {
+                    "title": " Les Chapieux - Refuge Elisabetta",
+                    "kilometer": "21km"
+                }
+            },
+            "5": {
+                "0": {
+                    "title": " Refuge Elisabetta - Courmayeur",
+                    "kilometer": "22km"
+                }
+            },
+            "6": {
+                "0": {
+                    "title": " Courmayeur - La Vachey",
+                    "kilometer": "26km"
+                },
+                "1": {
+                    "title": " La Vachey - La Fouly ",
+                    "kilometer": "32km"
+                }
+            },
+            "7": {
+                "0": {
+                    "title": " La Fouly - Champex",
+                    "kilometer": "42km"
+                }
+            },
+            "8": {
+                "0": {
+                    "title": " Champex - Trient",
+                    "kilometer": "28km"
+                }
+            },
+            "9": {
+                "0": {
+                    "title": " Trient - Tre Le Champ",
+                    "kilometer": "19km"
+                }
+            },
+            "10": {
+                "0": {
+                    "title": " Tre Le Champ - Chamonix",
+                    "kilometer": "40km"
+                }
+            }
+        },
+        "onceDias": {
+            "1": {
+                "0": {
+                    "title": "Chamonix - Les Houches",
+                    "kilometer": "43km"
+                }
+            },
+            "2": {
+                "0": {
+                    "title": "Les Houches - Les Contamines",
+                    "kilometer": "32km"
+                }
+            },
+            "3": {
+                "0": {
+                    "title": "Les Contamines - Les Chapieux",
+                    "kilometer": "65km"
+                }
+            },
+            "4": {
+                "0": {
+                    "title": " Les Chapieux - Refuge Elisabetta",
+                    "kilometer": "21km"
+                }
+            },
+            "5": {
+                "0": {
+                    "title": " Refuge Elisabetta - Courmayeur",
+                    "kilometer": "22km"
+                }
+            },
+            "6": {
+                "0": {
+                    "title": " Courmayeur - La Vachey",
+                    "kilometer": "26km"
+                }
+            },
+            "7": {
+                "0": {
+                    "title": " La Vachey - La Fouly ",
+                    "kilometer": "32km"
+                }
+            },
+            "8": {
+                "0": {
+                    "title": " La Fouly - Champex",
+                    "kilometer": "42km"
+                }
+            },
+            "9": {
+                "0": {
+                    "title": " Champex - Trient",
+                    "kilometer": "28km"
+                }
+            },
+            "10": {
+                "0": {
+                    "title": " Trient - Tre Le Champ",
+                    "kilometer": "19km"
+                }
+            },
+            "11": {
+                "0": {
+                    "title": " Tre Le Champ - Chamonix",
+                    "kilometer": "40km"
+                }
+            }
+        }
+    }
+}

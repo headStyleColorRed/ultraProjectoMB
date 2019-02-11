@@ -1,0 +1,25 @@
+{
+    "rutas": {
+        "cuatroDias": {
+            "0": {
+                "1": "Chamonix - Les Houches",
+                "2": "Les Houches - Les Contamines",
+                "3": "Les Contamines - Les Chapieux"
+            },
+            "1": {
+                "4": " Les Chapieux - Refuge Elisabetta",
+                "5": " Refuge Elisabetta - Courmayeur",
+                "6": " Courmayeur - La Vachey"
+            },
+            "2": {
+                "7": " La Vachey - La Fouly ",
+                "8": " La Fouly - Champex",
+                "9": " Champex - Trient"
+            },
+            "3": {
+                "10": " Trient - Tre Le Champ",
+                "11": " Tre Le Champ - Chamonix"
+            }
+        }
+    }
+}
