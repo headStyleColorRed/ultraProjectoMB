@@ -2,15 +2,15 @@
     "rutas": {
         "cuatroDias": {
             "0": {
-                "0": {
+                "d1": {
                     "title": "Chamonix - Les Houches",
                     "kilometer": "43km",
-                    "key":"1"
+                    "key":"d1"
                 },
-                "1": {
+                "d2": {
                     "title": "Les Houches - Les Contamines",
                     "kilometer": "32km",
-                    "key":"2"
+                    "key":"d2"
                 }
             },
             "1": {
@@ -67,15 +67,15 @@
         },
         "cincoDias": {
             "0": {
-                "0": {
+                "d1": {
                     "title": "Chamonix - Les Houches",
                     "kilometer": "43km",
-                    "key":"1"
+                    "key":"d1"
                 },
-                "1": {
+                "d2": {
                     "title": "Les Houches - Les Contamines",
                     "kilometer": "32km",
-                    "key":"2"
+                    "key":"d2"
                 }
             },
             "1": {
@@ -134,15 +134,15 @@
         },
         "seisDias": {
             "0": {
-                "0": {
+                "d1": {
                     "title": "Chamonix - Les Houches",
                     "kilometer": "43km",
-                    "key":"1"
+                    "key":"d1"
                 },
-                "1": {
+                "d2": {
                     "title": "Les Houches - Les Contamines",
                     "kilometer": "32km",
-                    "key":"2"
+                    "key":"d2"
                 }
             },
             "1": {
@@ -203,17 +203,17 @@
         },
         "sieteDias": {
             "0": {
-                "0": {
+                "d1": {
                     "title": "Chamonix - Les Houches",
                     "kilometer": "43km",
-                    "key":"1"
+                    "key":"d1"
                 }
             },
             "1": {
-                "0": {
+                "d2": {
                     "title": "Les Houches - Les Contamines",
                     "kilometer": "32km",
-                    "key":"2"
+                    "key":"d2"
                 },
                 "1": {
                     "title": "Les Contamines - Les Chapieux",
@@ -274,17 +274,17 @@
         },
         "ochoDias": {
             "0": {
-                "0": {
+                "d1": {
                     "title": "Chamonix - Les Houches",
                     "kilometer": "43km",
-                    "key":"1"
+                    "key":"d1"
                 }
             },
             "1": {
-                "0": {
+                "d2": {
                     "title": "Les Houches - Les Contamines",
                     "kilometer": "32km",
-                    "key":"2"
+                    "key":"d2"
                 }
             },
             "2": {
@@ -347,17 +347,17 @@
         },
         "nueveDias": {
             "0": {
-                "0": {
+                "d1": {
                     "title": "Chamonix - Les Houches",
                     "kilometer": "43km",
-                    "key":"1"
+                    "key":"d1"
                 }
             },
             "1": {
-                "0": {
+                "d2": {
                     "title": "Les Houches - Les Contamines",
                     "kilometer": "32km",
-                    "key":"2"
+                    "key":"d2"
                 }
             },
             "2": {
@@ -422,17 +422,17 @@
         },
         "diezDias": {
             "0": {
-                "0": {
+                "d1": {
                     "title": "Chamonix - Les Houches",
                     "kilometer": "43km",
-                    "key":"1"
+                    "key":"d1"
                 }
             },
             "1": {
-                "0": {
+                "d2": {
                     "title": "Les Houches - Les Contamines",
                     "kilometer": "32km",
-                    "key":"2"
+                    "key":"d2"
                 }
             },
             "2": {
@@ -499,17 +499,17 @@
         },
         "onceDias": {
             "0": {
-                "0": {
+                "d1": {
                     "title": "Chamonix - Les Houches",
                     "kilometer": "43km",
-                    "key":"1"
+                    "key":"d1"
                 }
             },
             "1": {
-                "0": {
+                "d2": {
                     "title": "Les Houches - Les Contamines",
                     "kilometer": "32km",
-                    "key":"2"
+                    "key":"d2"
                 }
             },
             "2": {

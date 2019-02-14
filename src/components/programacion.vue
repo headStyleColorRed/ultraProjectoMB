@@ -77,7 +77,26 @@ export default {
   },
 
   mounted() {
-    this.fetchRutasData();
+    this.numeroDeDias = this.$store.state.numeroDeDias;
+    if (this.$store.state.numeroDeDias == 4) {
+      this.rutas = listaRutas.rutas.cuatroDias;
+    } else if (this.$store.state.numeroDeDias == 5) {
+      this.rutas = listaRutas.rutas.cincoDias;
+    } else if (this.$store.state.numeroDeDias == 6) {
+      this.rutas = listaRutas.rutas.seisDias;
+    } else if (this.$store.state.numeroDeDias == 7) {
+      this.rutas = listaRutas.rutas.sieteDias;
+    } else if (this.$store.state.numeroDeDias == 8) {
+      this.rutas = listaRutas.rutas.ochoDias;
+    } else if (this.$store.state.numeroDeDias == 9) {
+      this.rutas = listaRutas.rutas.nueveDias;
+    } else if (this.$store.state.numeroDeDias == 10) {
+      this.rutas = listaRutas.rutas.diezDias;
+    } else if (this.$store.state.numeroDeDias == 11) {
+      this.rutas = listaRutas.rutas.onceDias;
+    }
+
+    this.loaderShow = false;
   },
 
   methods: {
@@ -85,39 +104,45 @@ export default {
       this.edicion = !this.edicion;
     },
     siguienteDia(item, index, ruta, n) {
-      console.log(`Cambiar ruta ${item.title} to day ${index + 2}`);
-    },
-    fetchRutasData() {
-      this.$http
-        .get("https://montblanc-8eb85.firebaseio.com/rutas.json")
-        .then(data => {
-          const resultArray = [];
-          for (let key in data) {
-            resultArray.push(data[key]);
-          }
-          this.Cuaderno = resultArray[0];
-          this.loaderShow = false;
+      //console.log(`Cambiar ruta ${item.title} to day ${index + 2}`);
+      let countDiaAntiguo = Object.keys(this.rutas[index]).length;
+      let elQueHayQueBorrar = item.key;
+      let diaSiguienteParseando = parseInt(index);
+      let diaSiguiente = diaSiguienteParseando + 1;
+      let countDiaNuevo = Object.keys(this.rutas[diaSiguiente]);
 
-          this.numeroDeDias = this.$store.state.numeroDeDias;
-          if (this.$store.state.numeroDeDias == 4) {
-            this.rutas = resultArray[0].cuatroDias;
-          } else if (this.$store.state.numeroDeDias == 5) {
-            this.rutas = resultArray[0].cincoDias;
-          } else if (this.$store.state.numeroDeDias == 6) {
-            this.rutas = resultArray[0].seisDias;
-          } else if (this.$store.state.numeroDeDias == 7) {
-            this.rutas = resultArray[0].sieteDias;
-          } else if (this.$store.state.numeroDeDias == 8) {
-            this.rutas = resultArray[0].ochoDias;
-          } else if (this.$store.state.numeroDeDias == 9) {
-            this.rutas = resultArray[0].nueveDias;
-          } else if (this.$store.state.numeroDeDias == 10) {
-            this.rutas = resultArray[0].diezDias;
-          } else if (this.$store.state.numeroDeDias == 11) {
-            this.rutas = resultArray[0].onceDias;
-          }
-        });
-    }
+      //Guardando en constante las rutas del Nuevo Día
+
+      //Objetivizando el elemento que queremos mover
+      let elementoaTrasladar = new Object();
+      elementoaTrasladar.title = item.title;
+      elementoaTrasladar.kilometer = item.kilometer;
+      elementoaTrasladar.key = item.key;
+
+      //Objetivizando los elementos del día siguiente
+      let elementosDelNuevoDia = new Object();
+      for (let i = 0; i < countDiaNuevo; i++) {
+        elementosDelNuevoDia.title = item.title;
+        elementosDelNuevoDia.kilometer = item.kilometer;
+        elementosDelNuevoDia.key = item.key;
+      }
+
+      //Borrar el path antiguo
+      for (let i = 0; i < countDiaAntiguo; i++) {
+        delete this.rutas[index][elQueHayQueBorrar];
+        this.$forceUpdate();
+      }
+      //Nuevo Día con el elemento a trasladar
+      let nuevoDia = new Object();
+      nuevoDia[elQueHayQueBorrar] = elementoaTrasladar;
+
+      this.rutas[diaSiguiente] = nuevoDia;
+      console.log(this.rutas[diaSiguiente]);
+    },
+
+    //// D E B E R E S    P A R A    M A Ñ A N A :::::
+    /// 
+    /// Probar a convertir mediante parse() la data que quieres actualizar en un array, .push() el nuevo día en el array, convertir en json a traves de json.stringify y mandarlo pal server ya bien montado.
   },
 
   components: {
@@ -159,7 +184,7 @@ export default {
   text-align: center;
 }
 
-.explicacion li{
+.explicacion li {
   padding-right: 1rem;
   margin-bottom: 5px;
 }
@@ -168,7 +193,6 @@ export default {
   grid-template-columns: 1fr 1fr;
   padding: 0.5rem 0;
 }
-
 
 .lds-ripple {
   display: inline-block;
@@ -209,3 +233,35 @@ export default {
 
 
 
+
+   fetchRutasData() {
+    this.$http
+      .get("https://montblanc-8eb85.firebaseio.com/rutas.json")
+      .then(data => {
+        const resultArray = [];
+        for (let key in data) {
+          resultArray.push(data[key]);
+        }
+        this.Cuaderno = resultArray[0];
+        this.loaderShow = false;
+
+        this.numeroDeDias = this.$store.state.numeroDeDias;
+        if (this.$store.state.numeroDeDias == 4) {
+          this.rutas = resultArray[0].cuatroDias;
+        } else if (this.$store.state.numeroDeDias == 5) {
+          this.rutas = resultArray[0].cincoDias;
+        } else if (this.$store.state.numeroDeDias == 6) {
+          this.rutas = resultArray[0].seisDias;
+        } else if (this.$store.state.numeroDeDias == 7) {
+          this.rutas = resultArray[0].sieteDias;
+        } else if (this.$store.state.numeroDeDias == 8) {
+          this.rutas = resultArray[0].ochoDias;
+        } else if (this.$store.state.numeroDeDias == 9) {
+          this.rutas = resultArray[0].nueveDias;
+        } else if (this.$store.state.numeroDeDias == 10) {
+          this.rutas = resultArray[0].diezDias;
+        } else if (this.$store.state.numeroDeDias == 11) {
+          this.rutas = resultArray[0].onceDias;
+        }
+      });
+  }
