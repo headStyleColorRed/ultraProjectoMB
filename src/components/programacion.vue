@@ -44,7 +44,11 @@
                 </v-list-tile-content>
 
                 <v-list-tile-action>
-                  <v-icon v-on:click="anteriorDia()" v-if="edicion" color="orange darken-1">remove</v-icon>
+                  <v-icon
+                    v-on:click="anteriorDia(item, index,ruta, n)"
+                    v-if="edicion"
+                    color="orange darken-1"
+                  >remove</v-icon>
                   <v-icon v-else>lock</v-icon>
                 </v-list-tile-action>
               </v-list-tile>
@@ -103,46 +107,57 @@ export default {
     editar() {
       this.edicion = !this.edicion;
     },
-    siguienteDia(item, index, ruta, n) {
-      //console.log(`Cambiar ruta ${item.title} to day ${index + 2}`);
-      let countDiaAntiguo = Object.keys(this.rutas[index]).length;
+    siguienteDia(item, index) {
       let elQueHayQueBorrar = item.key;
       let diaSiguienteParseando = parseInt(index);
       let diaSiguiente = diaSiguienteParseando + 1;
-      let countDiaNuevo = Object.keys(this.rutas[diaSiguiente]);
-
-      //Guardando en constante las rutas del Nuevo Día
-
-      //Objetivizando el elemento que queremos mover
-      let elementoaTrasladar = new Object();
-      elementoaTrasladar.title = item.title;
-      elementoaTrasladar.kilometer = item.kilometer;
-      elementoaTrasladar.key = item.key;
-
-      //Objetivizando los elementos del día siguiente
-      let elementosDelNuevoDia = new Object();
-      for (let i = 0; i < countDiaNuevo; i++) {
-        elementosDelNuevoDia.title = item.title;
-        elementosDelNuevoDia.kilometer = item.kilometer;
-        elementosDelNuevoDia.key = item.key;
-      }
+      let countDiaNuevo = Object.keys(this.rutas[diaSiguiente]).length;
+      //Notificación
+      console.log(
+        `Cambiar ruta ${item.title} to day ${diaSiguienteParseando + 2}`
+      );
 
       //Borrar el path antiguo
-      for (let i = 0; i < countDiaAntiguo; i++) {
-        delete this.rutas[index][elQueHayQueBorrar];
-        this.$forceUpdate();
+      delete this.rutas[index][elQueHayQueBorrar];
+      this.$forceUpdate();
+
+      //localizar objetivizar el objeto a borrar:
+      let diaAmoverEnObjeto = new Object();
+      diaAmoverEnObjeto.key = item.key;
+      diaAmoverEnObjeto.kilometer = item.kilometer;
+      diaAmoverEnObjeto.title = item.title;
+
+      //Pusheando la ruta a cambiar al nuevo Día
+      this.rutas[diaSiguiente][elQueHayQueBorrar] = diaAmoverEnObjeto;
+
+      for (let i = 0; i < countDiaNuevo; i++) {
+        this.rutas[diaSiguiente] = this.rutas[diaSiguiente];
       }
-      //Nuevo Día con el elemento a trasladar
-      let nuevoDia = new Object();
-      nuevoDia[elQueHayQueBorrar] = elementoaTrasladar;
-
-      this.rutas[diaSiguiente] = nuevoDia;
-      console.log(this.rutas[diaSiguiente]);
     },
+    anteriorDia(item, index) {
+      let countDiaAntiguo = Object.keys(this.rutas[index]).length;
+      let elQueHayQueBorrar = item.key;
+      let diaAnteriorParseando = parseInt(index);
+      let diaAnterior = diaAnteriorParseando - 1;
+      let countDiaNuevo = Object.keys(this.rutas[diaAnterior]);
 
-    //// D E B E R E S    P A R A    M A Ñ A N A :::::
-    /// 
-    /// Probar a convertir mediante parse() la data que quieres actualizar en un array, .push() el nuevo día en el array, convertir en json a traves de json.stringify y mandarlo pal server ya bien montado.
+      //Notificación
+      console.log(`Cambiar ruta ${item.title} to day ${diaAnteriorParseando}`);
+      //Borrar el path antiguo
+      delete this.rutas[index][elQueHayQueBorrar];
+      this.$forceUpdate();
+
+      //localizar objetivizar el objeto a borrar:
+      let diaAmoverEnObjeto = new Object();
+      diaAmoverEnObjeto.key = item.key;
+      diaAmoverEnObjeto.kilometer = item.kilometer;
+      diaAmoverEnObjeto.title = item.title;
+
+      //Pusheando la ruta a cambiar al nuevo Día
+      this.rutas[diaAnterior][elQueHayQueBorrar] = diaAmoverEnObjeto;
+
+      this.$forceUpdate();
+    }
   },
 
   components: {
@@ -230,38 +245,3 @@ export default {
   }
 }
 </style>
-
-
-
-
-   fetchRutasData() {
-    this.$http
-      .get("https://montblanc-8eb85.firebaseio.com/rutas.json")
-      .then(data => {
-        const resultArray = [];
-        for (let key in data) {
-          resultArray.push(data[key]);
-        }
-        this.Cuaderno = resultArray[0];
-        this.loaderShow = false;
-
-        this.numeroDeDias = this.$store.state.numeroDeDias;
-        if (this.$store.state.numeroDeDias == 4) {
-          this.rutas = resultArray[0].cuatroDias;
-        } else if (this.$store.state.numeroDeDias == 5) {
-          this.rutas = resultArray[0].cincoDias;
-        } else if (this.$store.state.numeroDeDias == 6) {
-          this.rutas = resultArray[0].seisDias;
-        } else if (this.$store.state.numeroDeDias == 7) {
-          this.rutas = resultArray[0].sieteDias;
-        } else if (this.$store.state.numeroDeDias == 8) {
-          this.rutas = resultArray[0].ochoDias;
-        } else if (this.$store.state.numeroDeDias == 9) {
-          this.rutas = resultArray[0].nueveDias;
-        } else if (this.$store.state.numeroDeDias == 10) {
-          this.rutas = resultArray[0].diezDias;
-        } else if (this.$store.state.numeroDeDias == 11) {
-          this.rutas = resultArray[0].onceDias;
-        }
-      });
-  }
