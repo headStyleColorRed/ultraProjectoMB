@@ -6,7 +6,7 @@
       <h3>This is the plan I made for you!</h3>
       <ul>
         <li>If you want to change any day, click the
-          <v-icon>lock</v-icon>to unlock the list.
+          <v-icon>lock</v-icon>to unlock the list. Use <v-icon>add</v-icon> or <v-icon>remove</v-icon> to change the position of the routes.
         </li>
         <li>Once your are done with the list, press
           <v-icon>check</v-icon>and continue to see your progress.
@@ -24,7 +24,7 @@
     </div>
 
     <div v-for="(ruta, index) in rutas" :key="index" class="DiaThumbnail">
-      <h2>Day {{index + 1}}</h2>
+      <h2>Day {{parseInt(index) + 1}}</h2>
       <v-layout row>
         <v-flex xs12 sm6 offset-sm3>
           <v-card flat>
@@ -109,9 +109,41 @@ export default {
     },
     siguienteDia(item, index) {
       let elQueHayQueBorrar = item.key;
+      let diaSiguiente = parseInt(index) + 1;
+      let keysDeDiaNuevo = Object.keys(this.rutas[diaSiguiente]);
+
+      if (elQueHayQueBorrar == keysDeDiaNuevo[0] - 1) {
+        this.actualizandoSubidaDeDia(item, index);
+      } else if (isNaN(keysDeDiaNuevo[0] - 1)) {
+        this.actualizandoSubidaDeDia(item, index);
+      } else {
+        return;
+      }
+    },
+    anteriorDia(item, index) {
+      let elQueHayQueBorrar = item.key;
+      let diaAnterior = parseInt(index) - 1;
+      let countDeDiaAnterior = Object.keys(this.rutas[diaAnterior]).length - 1;
+      let keysDeDiaAnterior = Object.keys(this.rutas[diaAnterior]);
+      console.log(keysDeDiaAnterior[countDeDiaAnterior]);
+
+      if (
+        elQueHayQueBorrar ==
+        parseInt(keysDeDiaAnterior[countDeDiaAnterior]) + 1
+      ) {
+        this.actualizandoBajadaDeDia(item, index);
+      } else if (isNaN(parseInt(keysDeDiaAnterior[countDeDiaAnterior]) + 1)) {
+        this.actualizandoBajadaDeDia(item, index);
+      } else {
+        return;
+      }
+    },
+    actualizandoSubidaDeDia(item, index) {
+      let elQueHayQueBorrar = item.key;
       let diaSiguienteParseando = parseInt(index);
       let diaSiguiente = diaSiguienteParseando + 1;
       let countDiaNuevo = Object.keys(this.rutas[diaSiguiente]).length;
+
       //Notificación
       console.log(
         `Cambiar ruta ${item.title} to day ${diaSiguienteParseando + 2}`
@@ -129,13 +161,8 @@ export default {
 
       //Pusheando la ruta a cambiar al nuevo Día
       this.rutas[diaSiguiente][elQueHayQueBorrar] = diaAmoverEnObjeto;
-
-      for (let i = 0; i < countDiaNuevo; i++) {
-        this.rutas[diaSiguiente] = this.rutas[diaSiguiente];
-      }
     },
-    anteriorDia(item, index) {
-      let countDiaAntiguo = Object.keys(this.rutas[index]).length;
+    actualizandoBajadaDeDia(item, index) {
       let elQueHayQueBorrar = item.key;
       let diaAnteriorParseando = parseInt(index);
       let diaAnterior = diaAnteriorParseando - 1;
@@ -143,6 +170,7 @@ export default {
 
       //Notificación
       console.log(`Cambiar ruta ${item.title} to day ${diaAnteriorParseando}`);
+
       //Borrar el path antiguo
       delete this.rutas[index][elQueHayQueBorrar];
       this.$forceUpdate();
@@ -155,8 +183,6 @@ export default {
 
       //Pusheando la ruta a cambiar al nuevo Día
       this.rutas[diaAnterior][elQueHayQueBorrar] = diaAmoverEnObjeto;
-
-      this.$forceUpdate();
     }
   },
 
