@@ -2,8 +2,7 @@
   <div>
     <toolbar/>
     <div class="wrapper">
-      <div class="wholeMap">
-      </div>
+      <div class="wholeMap"></div>
       <div class="inicioAventura">
         <!--/////////Preguntas de Rigor////////-->
         <v-layout row justify-center>
@@ -21,7 +20,11 @@
               <v-card-actions>
                 <v-spacer></v-spacer>
                 <v-btn color="orange darken-1" flat @click="cuantosDias('clockWise')">ClockWise</v-btn>
-                <v-btn color="orange darken-1" flat @click="cuantosDias('antiClockWise')">Anti-ClockWise</v-btn>
+                <v-btn
+                  color="orange darken-1"
+                  flat
+                  @click="cuantosDias('antiClockWise')"
+                >Anti-ClockWise</v-btn>
               </v-card-actions>
             </v-card>
           </v-dialog>
@@ -63,6 +66,12 @@
         </v-layout>
       </div>
 
+      <v-snackbar v-model="messageSent" label="Top" value="top" color="red" top class="popupbar">
+        <v-spacer></v-spacer>
+        {{pickDay}}
+        <v-spacer></v-spacer>
+        <v-icon>warning</v-icon>
+      </v-snackbar>
     </div>
   </div>
 </template>
@@ -77,38 +86,8 @@ export default {
       unidadesDeRecorrido: 0,
       decenasDeRecorrido: 0,
       decenasDeRecorridoShow: 0,
-      forecast: {
-        0: {
-          nombreDia: "Today",
-          iconoTiempo: "wb_sunny",
-          temperatura: "18/16Cº",
-          porcentajeLluvia: "15%",
-        },
-        1: {
-          nombreDia: "Tue",
-          iconoTiempo: "cloud",
-          temperatura: "12/6Cº",
-          porcentajeLluvia: "43%",
-        },
-        2: {
-          nombreDia: "Wed",
-          iconoTiempo: "wb_sunny",
-          temperatura: "18/16Cº",
-          porcentajeLluvia: "10%",
-        },
-        3: {
-          nombreDia: "Thu",
-          iconoTiempo: "cloud",
-          temperatura: "15/10Cº",
-          porcentajeLluvia: "70%",
-        },
-        4: {
-          nombreDia: "Fri",
-          iconoTiempo: "wb_sunny",
-          temperatura: "18/16Cº",
-          porcentajeLluvia: "24%",
-        },
-      }
+      messageSent: false,
+      pickDay: "Mininum 4 days and maximum 11 days."
     };
   },
   methods: {
@@ -119,8 +98,12 @@ export default {
     },
     submitiendo() {
       let sumaDeDias = this.decenasDeRecorrido + this.unidadesDeRecorrido;
-      this.$store.state.numeroDeDias = sumaDeDias;
-      this.$router.push("/programacion");
+      if (sumaDeDias < 4 || sumaDeDias > 11) {
+        this.messageSent = true;
+      } else {
+        this.$store.commit("change", sumaDeDias);
+        this.$router.push("/programacion");
+      }
     },
     añadir() {
       if (this.unidadesDeRecorrido < 9) {
@@ -235,6 +218,5 @@ export default {
   font-size: 2rem;
   padding: 1rem;
 }
-
 </style>
 

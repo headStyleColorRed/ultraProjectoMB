@@ -6,10 +6,10 @@
       <h3>This is the plan I made for you!</h3>
       <ul>
         <li>If you want to change any day, click the
-          <v-icon>lock</v-icon>to unlock the list. Use <v-icon>add</v-icon> or <v-icon>remove</v-icon> to change the position of the routes.
+          <v-icon color="blue-grey lighten-3">lock</v-icon>to unlock the list. Use <v-icon color="blue-grey lighten-3">add</v-icon> or <v-icon color="blue-grey lighten-3">remove</v-icon> to change the position of the routes.
         </li>
         <li>Once your are done with the list, press
-          <v-icon>check</v-icon>and continue to see your progress.
+          <v-icon color="blue-grey lighten-3">check</v-icon>and continue to see your progress.
         </li>
         <li>Rembember that you can always go back and change it by going into settings and "Route Planning"</li>
       </ul>
@@ -17,7 +17,7 @@
         <v-btn v-on:click="editar" color="orange darken-1">
           <v-icon>lock</v-icon>
         </v-btn>
-        <v-btn color="orange darken-1">
+        <v-btn v-on:click="submitRoutesChanges()" color="orange darken-1">
           <v-icon>check</v-icon>
         </v-btn>
       </div>
@@ -40,7 +40,7 @@
                 </v-list-tile-action>
 
                 <v-list-tile-content>
-                  <v-list-tile-title>{{item.title}}-{{item.kilometer}}</v-list-tile-title>
+                  <v-list-tile-title>{{item.title}}</v-list-tile-title>
                 </v-list-tile-content>
 
                 <v-list-tile-action>
@@ -81,7 +81,7 @@ export default {
   },
 
   mounted() {
-    this.numeroDeDias = this.$store.state.numeroDeDias;
+    this.numeroDeDias = this.$store.getters.numeroDeDias;
     if (this.$store.state.numeroDeDias == 4) {
       this.rutas = listaRutas.rutas.cuatroDias;
     } else if (this.$store.state.numeroDeDias == 5) {
@@ -158,9 +158,15 @@ export default {
       diaAmoverEnObjeto.key = item.key;
       diaAmoverEnObjeto.kilometer = item.kilometer;
       diaAmoverEnObjeto.title = item.title;
+      diaAmoverEnObjeto.begining = item.begining;
+      diaAmoverEnObjeto.ending = item.ending;
+      diaAmoverEnObjeto.hours = item.hours;
+      diaAmoverEnObjeto.metrosDeAscenso = item.metrosDeAscenso;
+      diaAmoverEnObjeto.metrosDeDescenso = item.metrosDeDescenso;
 
       //Pusheando la ruta a cambiar al nuevo Día
       this.rutas[diaSiguiente][elQueHayQueBorrar] = diaAmoverEnObjeto;
+      console.log(this.rutas);
     },
     actualizandoBajadaDeDia(item, index) {
       let elQueHayQueBorrar = item.key;
@@ -180,9 +186,18 @@ export default {
       diaAmoverEnObjeto.key = item.key;
       diaAmoverEnObjeto.kilometer = item.kilometer;
       diaAmoverEnObjeto.title = item.title;
+      diaAmoverEnObjeto.begining = item.begining;
+      diaAmoverEnObjeto.ending = item.ending;
+      diaAmoverEnObjeto.hours = item.hours;
+      diaAmoverEnObjeto.metrosDeAscenso = item.metrosDeAscenso;
+      diaAmoverEnObjeto.metrosDeDescenso = item.metrosDeDescenso;
 
       //Pusheando la ruta a cambiar al nuevo Día
       this.rutas[diaAnterior][elQueHayQueBorrar] = diaAmoverEnObjeto;
+    },
+    submitRoutesChanges(){
+      this.$store.commit("changeRutas", this.rutas)
+      this.$router.push("/landing");
     }
   },
 
@@ -197,6 +212,7 @@ export default {
   background-color: #303030;
   color: whitesmoke;
   border-bottom: 1px solid orange;
+  min-height: 5rem;
 }
 
 .DiaThumbnail {
@@ -210,9 +226,6 @@ export default {
   padding-top: 1rem;
 }
 
-.creceCoño {
-  min-height: 3rem;
-}
 
 .explicacion {
   margin-top: 5rem;
